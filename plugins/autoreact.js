@@ -1,6 +1,6 @@
 import { bot } from '../lib/handler.js';
 import { serialize } from '../lib/serialize.js';
-import { loadMessage } from '../lib/sql/store.js';
+//import { loadMessage } from '../lib/sql/store.js';
 import { numtoId } from '../lib/utils.js';
 import fs from 'fs';
 
