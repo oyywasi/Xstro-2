@@ -9,20 +9,39 @@ bot(
   },
   async (message) => {
     const response = `
-**🤖 Bot Introduction:**
-Hello! I am xstro multidevice friendly bot here to assist you with various tasks and keep you entertained.
+🌟 **Welcome to Xstro Bot!** 🌟
+Hello! I am **Xstro**, your multi-device friendly bot, here to assist you with various tasks, enhance your group experience, and keep you entertained! 🚀
 
-**🔗 GitHub Repository:**
-- View my source code: https://github.com/AstroX11/Xstro
+---
 
-**👨‍💻 Developers:**
-- **Astro** from Negira (Lead Developer)
-- **Mr. Wasi** from Pakistan (Co-Developer)
+🎯 **What I Can Do for You:**
+> - Automate your daily tasks 🛠️
+> - Manage your groups efficiently 📋
+> - Provide fun interactions and utilities 🎉
+> - Stay updated with cool features! 🌐
 
-Feel free to explore the repo, suggest features, or contribute to the project!
+---
 
-> powered by xstro md
+🔗 **GitHub Repository:**
+> **Explore My Source Code:** *https://github.com/AstroX11/Xstro*
+> Contribute, report issues, or suggest features to make me even better! 💻
+
+---
+
+👨‍💻 **Meet the Developers:**
+- 👾 **Astro** from Negira *(Lead Developer)* — The mastermind behind Xstro's robust features.
+- 🤝 **Mr. Wasi** from Pakistan *(Co-Developer)* — Ensures everything runs smoothly and efficiently.
+
+---
+
+💡 **How You Can Help:**
+> Star the repository ⭐, report bugs 🐛, or share your feature ideas 💡.
+
+🌐 **Let’s Make Xstro Even Better Together!**
+
+> _Powered by **Xstro Multi-Device** — Built for YOU! 💜_
     `;
+
 
     try {
       await message.sendReply(response);
