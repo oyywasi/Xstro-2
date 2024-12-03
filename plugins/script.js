@@ -5,42 +5,36 @@ import path from 'path';
 // Path to the media folder
 const mediaFolder = path.resolve('./media');
 
-// Function to get a random image file from the media folder
-const xstroGetRandomImage = () => {
-  try {
-    const files = fs.readdirSync(mediaFolder);
-    const imageFiles = files.filter((file) => /\.(png|jpg|jpeg|gif)$/i.test(file));
-    if (imageFiles.length === 0) return null;
-    return path.join(mediaFolder, imageFiles[Math.floor(Math.random() * imageFiles.length)]);
-  } catch (error) {
-    console.error('[xstroGetRandomImage] Error reading media folder:', error);
-    return null;
-  }
-};
+// Specify the image you want to send (e.g., 'logo.png')
+const specificImagePath = path.join(mediaFolder, 'logo.jpg');
 
-// Function to send the introduction with an optional image
-const wasiSendRepoInfo = async (message, imagePath) => {
+// Function to send the introduction with the specific image
+const wasiSendRepoInfo = async (message) => {
   const response = `
 🤖  *Bot Introduction:*
-> Hello! I am xstrofriendly bot here to assist you with various tasks and keep you entertained.
+> Hello! I am Xstro, a friendly bot here to assist you with various tasks and keep you entertained.
 
 *🔗 GitHub Repository:*
-- View my source code:https://github.com/AstroX11/Xstro.git
+- View my source code: [Xstro GitHub Repo](https://github.com/AstroX11/Xstro)
+
 **👨‍💻 Developers:**
 - *Astro* from Negira (Lead Developer)
 - *Mr. Wasi* from Pakistan (Co-Developer)
 
 Feel free to explore the repo, suggest features, or contribute to the project!
 
+> Powered by **Xstro MD** 💜
   `;
 
   try {
-    if (imagePath) {
-      await message.sendFile(imagePath, response);
-      console.log('[wasiSendRepoInfo] Sent repo information with an image:', imagePath);
+    if (fs.existsSync(specificImagePath)) {
+      // If the image exists, send it along with the introduction
+      await message.sendFile(specificImagePath, response);
+      console.log('[wasiSendRepoInfo] Sent repo information with the image:', specificImagePath);
     } else {
+      // If the image doesn't exist, just send the text
       await message.sendReply(response);
-      console.log('[wasiSendRepoInfo] Sent repo information without an image.');
+      console.log('[wasiSendRepoInfo] Image not found, sent repo information without an image.');
     }
   } catch (error) {
     console.error('[wasiSendRepoInfo] Failed to send repo information:', error);
@@ -52,11 +46,10 @@ bot(
   {
     pattern: 'sc',
     isPublic: true,
-    desc: 'Sends bot introduction, social links, GitHub repository link, and developer information along with a random image.',
+    desc: 'Sends bot introduction, GitHub repository link, and developer information along with a specific image.',
     type: 'utility',
   },
   async (message) => {
-    const randomImage = xstroGetRandomImage();
-    await wasiSendRepoInfo(message, randomImage);
+    await wasiSendRepoInfo(message); // Send the repo info with the image
   }
 );
